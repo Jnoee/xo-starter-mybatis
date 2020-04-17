@@ -47,7 +47,7 @@ public class DaoProvider {
     EntityMeta meta = getEntityMeta(context);
     String[] columns = meta.getColumnNames().toArray(new String[0]);
     SQL sql = new SQL().INSERT_INTO(meta.getTableName()).INTO_COLUMNS(columns);
-    meta.getPropertyNames().forEach(property -> sql.INTO_VALUES(property));
+    meta.getPropertyNames().forEach(sql::INTO_VALUES);
     return sql.toString();
   }
 

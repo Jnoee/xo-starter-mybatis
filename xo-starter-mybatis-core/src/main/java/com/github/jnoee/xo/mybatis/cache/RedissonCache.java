@@ -42,7 +42,7 @@ public class RedissonCache implements Cache {
 
   @Override
   public void clear() {
-    getRedissonClient().getMap(id).clear();;
+    getRedissonClient().getMap(id).clear();
   }
 
   @Override
