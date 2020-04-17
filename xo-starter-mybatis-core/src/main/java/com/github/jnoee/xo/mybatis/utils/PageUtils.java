@@ -1,7 +1,5 @@
 package com.github.jnoee.xo.mybatis.utils;
 
-import java.util.List;
-
 import com.github.jnoee.xo.model.Page;
 import com.github.pagehelper.PageInfo;
 
@@ -24,10 +22,6 @@ public class PageUtils {
     } else {
       return new Page<>(pageInfo.getPageSize());
     }
-  }
-
-  public static <T> Page<T> toPage(List<T> list) {
-    return toPage(new PageInfo<>(list));
   }
 
   private PageUtils() {}

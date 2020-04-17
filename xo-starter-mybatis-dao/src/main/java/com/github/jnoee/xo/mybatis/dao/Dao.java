@@ -13,6 +13,7 @@ import com.github.jnoee.xo.model.Page;
 import com.github.jnoee.xo.model.PageQuery;
 import com.github.jnoee.xo.mybatis.utils.PageUtils;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 /**
  * 通用DAO接口。
@@ -129,7 +130,7 @@ public interface Dao<E> {
    */
   default Page<E> findPage(PageQuery query, Criteria<E> criteria) {
     PageHelper.startPage(query.getPageNum(), query.getPageSize());
-    List<E> pageList = findByPageHelper(query, criteria);
+    PageInfo<E> pageList = findPageInfo(query, criteria);
     return PageUtils.toPage(pageList);
   }
 
@@ -138,10 +139,10 @@ public interface Dao<E> {
    * 
    * @param query 分页条件
    * @param criteria 查询条件
-   * @return 返回PageHelper插件查询的分页列表对象。
+   * @return 返回PageHelper插件查询的PageInfo对象。
    */
   @SelectProvider(type = DaoProvider.class, method = "findBy")
-  List<E> findByPageHelper(PageQuery query, @Param("criteria") Criteria<E> criteria);
+  PageInfo<E> findPageInfo(PageQuery query, @Param("criteria") Criteria<E> criteria);
 
   /**
    * 新增实体。
